@@ -37,23 +37,40 @@ function capitalizeFirstLetter(string) {
 }
 
 export default () => {
+
   let [isLoading, setIsLoading] = useState(true);
-  let [error, setError] = useState();
-  let [response, setResponse] = useState();
+  let [error, setError] = useState(null);
+  let [weather, setWeather] = useState({});
     
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(
+        'apikey',
+      )
+      .then((response) => {
+        setWeather(response.data);                
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setIsLoading(false);
+      });
+  }, []);
+
     return (
       <View style={{flex: 1, paddingHorizontal: 10}}>
         <WeatherHeader
-          temperature={'25'}
-          weather={capitalizeFirstLetter('nublado')}
-          city={'Feira de Santana'}
+          temperature={Math.floor(weather?.main?.temp) || ''}
+          weather={capitalizeFirstLetter(weather?.weather?.[0]?.description || '')}
+          city={weather?.name || ''}
         />
-        <MinMaxCard min="20º" max="30º" dayOfWeek={'Terça'} day={'Hoje'} />
+        <MinMaxCard min={Math.floor(weather?.main?.temp_min) + 'º' || ''} max={Math.floor(weather?.main?.temp_max) + 'º' || ''} dayOfWeek={'Terça'} day={'Hoje'} />
         <InfoCard title={'Próximas 24 Horas'}>
           <HorizontalList data={data} />
         </InfoCard>
         <InfoCard>
-          <InfoHud data={hud} />
+          <InfoHud data={weather} />
         </InfoCard>
       </View>
     );
