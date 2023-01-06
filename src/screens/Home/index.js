@@ -46,7 +46,7 @@ export default () => {
     setIsLoading(true);
     axios
       .get(
-        'apikey',
+        'APIKEY',
       )
       .then((response) => {
         setWeather(response.data);                

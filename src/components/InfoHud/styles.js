@@ -1,14 +1,19 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-    container: {      
-    flexDirection: 'row',        
-    justifyContent: 'space-between', 
-    marginTop: 5,
-    borderBottomColor: '#fff',   
-    },
-    text:{
-        color: '#fff',
-        fontSize: 16,
-    }
+  container: {
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    flexWrap: "wrap",
+    
+  },
+  grid: {   
+    paddingVertical: 5,
+    alignItems: 'center',
+    width: '50%',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 16,
+  },
 });

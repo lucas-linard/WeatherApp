@@ -18,25 +18,26 @@ export default ({data}) => {
   }
   
   let info = [
-    {id: 1, title: 'Sensação real', value: data?.main?.feels_like, icon: 'thermometer-alert'},
+    {id: 1, title: 'Sensação real', value: Math.floor(data?.main?.feels_like) + ' º', icon: 'thermometer-alert'},
     {id: 2, title: 'Vel. Vento', value: msToKmh(data?.wind?.speed) + ' Km/h', icon: 'weather-windy'},
-    {id: 3, title: 'Umidade', value: data?.main?.humidity, icon: 'water-percent'},   
-    {id: 4, title: 'Nascer do sol', value: daytime?.sunrise, icon: 'weather-sunset-up'},
-    {id: 5, title: 'Pôr do sol', value: daytime?.sunset, icon: 'weather-sunset-down'},
+    {id: 3, title: 'Nuvens', value: data?.clouds?.all + ' %', icon: 'weather-cloudy'},
+    {id: 4, title: 'Umidade', value: data?.main?.humidity + ' %', icon: 'water-percent'},   
+    {id: 5, title: 'Nascer do sol', value: daytime?.sunrise, icon: 'weather-sunset-up'},
+    {id: 6, title: 'Pôr do sol', value: daytime?.sunset, icon: 'weather-sunset-down'},     
   ]
 
 
   return (
-    <View>
+    <View style={styles.container}>
       {info.map(item => {
         return (
-          <View style={styles.container} key={item.id}>
+          <View style={styles.grid} key={item.id}>
             <MaterialCommunityIcons
               name={item.icon}
               size={20}
               color="#fff"
-            />
-            <Text style={styles.text}>{item.title}</Text>
+            />            
+            <Text style={styles.text}>{item.title}</Text>                        
             <Text style={styles.text}>{item.value}</Text>
           </View>
         );
