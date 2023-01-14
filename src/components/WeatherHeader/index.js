@@ -11,7 +11,7 @@ export default (props) => {
             uri: 'https://openweathermap.org/img/wn/10d@4x.png',
           }}
         />
-        <Text style={styles.temperatureText}>{props.temperature}°</Text>
+        <Text style={styles.temperatureText}>{Math.floor(props.temperature) + '°' + props.unit}</Text>
       </View>
       <View style={styles.StatusContainer}>
         <Text style={styles.subtitleText}>{props.weather}</Text>

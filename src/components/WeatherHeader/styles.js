@@ -18,7 +18,7 @@ export default StyleSheet.create({
     },
     temperatureText: {
       color: '#fff',
-      fontSize: 96,
+      fontSize: 86,
     },
     subtitleText: {
       color: '#fff',

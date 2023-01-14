@@ -302,9 +302,9 @@ PODS:
   - React-jsinspector (0.70.6)
   - React-logger (0.70.6):
     - glog
-  - react-native-config (1.4.11):
-    - react-native-config/App (= 1.4.11)
-  - react-native-config/App (1.4.11):
+  - react-native-config (1.4.12):
+    - react-native-config/App (= 1.4.12)
+  - react-native-config/App (1.4.12):
     - React-Core
   - react-native-geolocation (3.0.4):
     - React-Core
@@ -574,7 +574,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: b4a65947391c658450151275aa406f2b8263178f
   React-jsinspector: 60769e5a0a6d4b32294a2456077f59d0266f9a8b
   React-logger: 1623c216abaa88974afce404dc8f479406bbc3a0
-  react-native-config: bcafda5b4c51491ee1b0e1d0c4e3905bc7b56c1b
+  react-native-config: 5e3e0c7798522b1a0d7641f7ffa5363044e16397
   react-native-geolocation: 3ed60c3d7f613c36b777b9fd0bc3453214e1b0d5
   React-perflogger: 8c79399b0500a30ee8152d0f9f11beae7fc36595
   React-RCTActionSheet: 7316773acabb374642b926c19aef1c115df5c466

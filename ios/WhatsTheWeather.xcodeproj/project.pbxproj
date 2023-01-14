@@ -171,7 +171,6 @@
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
 			name = WhatsTheWeatherTests;
-			productName = WhatsTheWeatherTests;
 			productReference = 00E356EE1AD99517003FC87E /* WhatsTheWeatherTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -492,7 +491,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = WhatsTheWeather/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "What's The Weather";
+				INFOPLIST_KEY_CFBundleDisplayName = WhatsTheWeather;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -518,7 +517,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = WhatsTheWeather/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "What's The Weather";
+				INFOPLIST_KEY_CFBundleDisplayName = WhatsTheWeather;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
