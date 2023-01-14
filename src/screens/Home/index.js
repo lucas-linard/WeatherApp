@@ -27,7 +27,7 @@ function capitalizeFirstLetter(string) {
 export default () => {
   let [isLoading, setIsLoading] = useState(true);
   let [error, setError] = useState(null);
-  let [weather, setWeather] = useState({});
+  let [data, setData] = useState({});
 
 
 
@@ -64,7 +64,7 @@ export default () => {
 
         Promise.all(endpoints.map(url => axios.get(url)))
           .then(response => {                        
-            setWeather([response[0].data,response[1].data]);
+            setData({weather: response[0].data,forecast: response[1].data});
             setIsLoading(false);
           })
           .catch(error => {
@@ -86,23 +86,23 @@ export default () => {
   return (
     <View style={{flex: 1, paddingHorizontal: 10}}>
       <WeatherHeader
-        temperature={Math.floor(weather[0]?.main?.temp) || ''}
+        temperature={Math.floor(data.weather?.main?.temp) || ''}
         weather={capitalizeFirstLetter(
-          weather[0]?.weather?.[0]?.description || '',
+          data.weather?.weather?.[0]?.description || '',
         )}
-        city={weather[0]?.name || ''}
+        city={data?.weather?.name || ''}
       />
       <MinMaxCard
-        min={Math.floor(weather[0]?.main?.temp_min) + 'º' || ''}
-        max={Math.floor(weather[0]?.main?.temp_max) + 'º' || ''}
+        min={Math.floor(data?.weather?.main?.temp_min) + 'º' || ''}
+        max={Math.floor(data?.weather?.main?.temp_max) + 'º' || ''}
         dayOfWeek={'Terça'}
         day={'Hoje'}
       />
       <InfoCard title={'Próximas 24 Horas'}>
-        <HorizontalList data={data} />
+        <HorizontalList data={data?.forecast} />
       </InfoCard>
       <InfoCard>
-        <InfoHud data={weather[0]} />
+        <InfoHud data={data?.weather} />
       </InfoCard>
     </View>
   );
