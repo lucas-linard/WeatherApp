@@ -28,8 +28,7 @@ export default () => {
   let [isLoading, setIsLoading] = useState(true);
   let [error, setError] = useState(null);
   let [weather, setWeather] = useState({});
-  const api = 'https://api.openweathermap.org/data/2.5';
-  const apikey = '7a8db69bc2dcfb19c9d563c2970f1726';
+
 
 
 
@@ -50,19 +49,22 @@ export default () => {
     ]
   );
 
-
+    
   useEffect(() => {
     // need to fix to handle geo location not granted
     setIsLoading(true);
     //const teste = Geolocation.requestAuthorization();
+
     Geolocation.getCurrentPosition(
       pos => {        
-        axios
-          .get(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=${apikey}&units=metric&lang=pt_br`,
-          )
-          .then(response => {            
-            setWeather(response.data);
+        let endpoints = [
+          `${Config.API}/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=${Config.API_KEY}&units=metric&lang=pt_br`,
+          `${Config.API}/forecast?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&appid=${Config.API_KEY}&units=metric&cnt=8&lang=pt_br`
+        ]
+
+        Promise.all(endpoints.map(url => axios.get(url)))
+          .then(response => {                        
+            setWeather([response[0].data,response[1].data]);
             setIsLoading(false);
           })
           .catch(error => {
@@ -81,19 +83,18 @@ export default () => {
     );
   }, []);  
 
-  console.log(Config.API_KEY)
   return (
     <View style={{flex: 1, paddingHorizontal: 10}}>
       <WeatherHeader
-        temperature={Math.floor(weather?.main?.temp) || ''}
+        temperature={Math.floor(weather[0]?.main?.temp) || ''}
         weather={capitalizeFirstLetter(
-          weather?.weather?.[0]?.description || '',
+          weather[0]?.weather?.[0]?.description || '',
         )}
-        city={weather?.name || ''}
+        city={weather[0]?.name || ''}
       />
       <MinMaxCard
-        min={Math.floor(weather?.main?.temp_min) + 'º' || ''}
-        max={Math.floor(weather?.main?.temp_max) + 'º' || ''}
+        min={Math.floor(weather[0]?.main?.temp_min) + 'º' || ''}
+        max={Math.floor(weather[0]?.main?.temp_max) + 'º' || ''}
         dayOfWeek={'Terça'}
         day={'Hoje'}
       />
@@ -101,7 +102,7 @@ export default () => {
         <HorizontalList data={data} />
       </InfoCard>
       <InfoCard>
-        <InfoHud data={weather} />
+        <InfoHud data={weather[0]} />
       </InfoCard>
     </View>
   );
