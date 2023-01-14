@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import styles from './styles';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 function msToKmh(ms) {
